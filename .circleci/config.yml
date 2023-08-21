@@ -9,7 +9,22 @@ jobs:
       - run: 
          command: | 
           echo "You can even have multiline commands."
-                
+      - run:
+         command: 
+          echo "Test2"
+      - restore_cache:
+          keys:
+            - "v1-dependencies-"
+      - run:
+          command:
+            mkdir ~/cache
+      - run:
+          command: 
+            echo "testfile" > ~/cache/log.txt
+      - save_cache:
+          paths:
+            - "~/cache"
+          key: v1-dependencies-
 workflows:
   build-workflow:
     jobs: 
