@@ -7,8 +7,22 @@ jobs:
     steps: 
       - checkout
       - run: 
-         command: echo "You can even have multiline commands.
-  
+         command: | 
+          echo "You can even have multiline commands."
+      - run:
+         command: 
+           -restore_cache:
+             keys:
+               -v1_dependencies
+      - run:
+          command: mkdir ~/cache
+      - run: 
+          command: echo "testfile" > ~/cache/log.txt
+      - save_cache:
+          paths:
+            - "~/cache"
+          key: v1-dependencies
+          
 workflows:
   build-workflow:
     jobs: 
