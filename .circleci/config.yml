@@ -7,21 +7,10 @@ jobs:
     steps: 
       - checkout
       - run: 
-        name: "'run' statements can actually contain a 'name' and 'command' argument as well"
-        commands:
-          sayhello:
-            steps:
-              - run: echo "You can even have multiline commands."
-              - restore_cache:
-                  keys:
-                    - v1-dependencies-Frun
-      - run: mkdir ~/cache/
-      - run: echo "testfile" > ~/cache/log.txt
-      - save_cache:
-          key: v1-dependencies-
-          paths: ~/cache
-
+         command: echo "You can even have multiline commands.
+  
 workflows:
   build-workflow:
-    jobs: build
+    jobs: 
+      - build
 
